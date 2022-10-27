@@ -1,6 +1,7 @@
 using AutoMapper;
 using CommandersNET6.Data;
 using CommandersNET6.Dtos;
+using CommandersNET6.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,6 +44,18 @@ app.MapGet("api/v1/commands/{id}", async (ICommandRepo repo, IMapper mapper, int
         return Results.Ok(mapper.Map<CommandReadDto>(command));
     }
     return Results.NotFound();
+});
+
+app.MapPost("api/v1/commands", async (ICommandRepo repo, IMapper mapper, CommandCreateDto cmdCreateDto) => {
+    var commandModel = mapper.Map<Command>(cmdCreateDto);
+
+    await repo.CreateCommand(commandModel);
+    await repo.SaveChanges();
+
+    var cmdReadDto = mapper.Map<CommandReadDto>(commandModel);
+
+    return Results.Created($"api/v1/commands/{cmdReadDto.Id}", cmdReadDto);
+
 });
 
 app.Run();

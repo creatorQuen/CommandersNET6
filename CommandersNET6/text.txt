@@ -3,4 +3,6 @@ Microsoft.EntityFrameworkCore
 Microsoft.EntityFrameworkCore.Design
 Microsoft.EntityFrameworkCore.SqlServer
 AutoMapper.Extensions.Microsoft.DependencyInjection
+
 dotnet user-secrets init
+

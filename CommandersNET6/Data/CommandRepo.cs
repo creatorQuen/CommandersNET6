@@ -23,7 +23,7 @@ namespace CommandersNET6.Data
 
         public void DeleteCommand(Command cmd)
         {
-            if(cmd != null)
+            if(cmd == null)
             {
                 throw new ArgumentNullException(nameof(cmd));
             }

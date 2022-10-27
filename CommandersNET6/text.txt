@@ -6,3 +6,8 @@ AutoMapper.Extensions.Microsoft.DependencyInjection
 
 dotnet user-secrets init
 
+dotnet user-secrets "UserId" "sa"
+
+dotnet ef migrations add initialmigration
+
+dotnet ef database update
